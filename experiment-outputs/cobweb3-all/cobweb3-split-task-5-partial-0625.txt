@@ -1,0 +1,37 @@
+Last login: Sat Jun 24 10:33:27 on ttys002
+xinthelian@xins-mbp continual-learning % python3 mnist_test_convo_cobweb_multitask.py --experiment splitMNIST --scenario task --contexts 5
+
+CUDA is NOT(!!) used
+
+
+ ***************************** LOAD DATA ******************************
+ --> MNIST: 'train'-dataset consisting of 60000 samples
+ --> MNIST: 'test'-dataset consisting of 10000 samples
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/torchvision/datasets/mnist.py:65: UserWarning: train_labels has been renamed targets
+  warnings.warn("train_labels has been renamed targets")
+
+======== MODEL TRAINING: CONTEXT 1 ========
+Processing:   1%|▋                                                                   | 1/100 [00:01<02:29,  1.51s/item]^Z
+zsh: suspended  python3 mnist_test_convo_cobweb_multitask.py --experiment splitMNIST  task  5
+xinthelian@xins-mbp continual-learning % python3 mnist_test_cobweb3_multitask_all.py --experiment splitMNIST --scenario task --contexts 5
+
+CUDA is NOT(!!) used
+
+
+ ***************************** LOAD DATA ******************************
+ --> MNIST: 'train'-dataset consisting of 60000 samples
+ --> MNIST: 'test'-dataset consisting of 10000 samples
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/torchvision/datasets/mnist.py:65: UserWarning: train_labels has been renamed targets
+  warnings.warn("train_labels has been renamed targets")
+
+======== MODEL TRAINING: CONTEXT 1 ========
+Processing: 100%|████████████████████████████████████████████████████████████| 12665/12665 [5:50:29<00:00,  1.66s/item]
+Training accuracy: 0.9960521121200158
+
+--------- MODEL TESTING: CONTEXT 1 ---------
+Now testing the cobweb tree in context 1:
+Processing: 100%|████████████████████████████████████████████████████████████████| 2115/2115 [15:19<00:00,  2.30item/s]
+Test accuracy on the current context: 0.9971631205673759
+
+======== MODEL TRAINING: CONTEXT 2 ========
+Processing:  82%|████████████████████████████████████████████████▉           | 9869/12089 [16:28:53<35:24,  1.05item/s]

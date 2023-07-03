@@ -1,0 +1,84 @@
+xinlian@lawn-143-215-60-58 continual-learning % python3 mnist_test_cobweb3_multitask.py --experiment splitMNIST --scenario task --contexts 5
+CUDA is NOT(!!) used
+
+
+ ***************************** LOAD DATA ******************************
+ --> MNIST: 'train'-dataset consisting of 60000 samples
+ --> MNIST: 'test'-dataset consisting of 10000 samples
+/Users/xinlian/Library/Python/3.9/lib/python/site-packages/torchvision/datasets/mnist.py:65: UserWarning: train_labels has been renamed targets
+  warnings.warn("train_labels has been renamed targets")
+
+======== MODEL TRAINING: CONTEXT 1 ========
+Processing: 100%|█████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:38<00:00,  2.59item/s]
+Training accuracy: 0.98
+
+--------- MODEL TESTING: CONTEXT 1 ---------
+Now testing the cobweb tree in context 1:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:03<00:00,  8.27item/s]
+Test accuracy on the current context: 1.0
+
+======== MODEL TRAINING: CONTEXT 2 ========
+Processing: 100%|█████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:56<00:00,  1.77item/s]
+Training accuracy: 0.78
+
+--------- MODEL TESTING: CONTEXT 2 ---------
+Now testing the cobweb tree in context 1:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:04<00:00,  7.33item/s]
+Test accuracy on the current context: 1.0
+Now testing the cobweb tree in context 2:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:04<00:00,  6.52item/s]
+Test accuracy on the current context: 0.8666666666666667
+
+======== MODEL TRAINING: CONTEXT 3 ========
+Processing: 100%|█████████████████████████████████████████████████████████████████████████████████████████| 100/100 [01:03<00:00,  1.59item/s]
+Training accuracy: 0.65
+
+--------- MODEL TESTING: CONTEXT 3 ---------
+Now testing the cobweb tree in context 1:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:04<00:00,  7.18item/s]
+Test accuracy on the current context: 0.9666666666666667
+Now testing the cobweb tree in context 2:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:04<00:00,  6.31item/s]
+Test accuracy on the current context: 0.7333333333333334
+Now testing the cobweb tree in context 3:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:04<00:00,  7.05item/s]
+Test accuracy on the current context: 0.8666666666666667
+
+======== MODEL TRAINING: CONTEXT 4 ========
+Processing: 100%|█████████████████████████████████████████████████████████████████████████████████████████| 100/100 [01:08<00:00,  1.47item/s]
+Training accuracy: 0.69
+
+--------- MODEL TESTING: CONTEXT 4 ---------
+Now testing the cobweb tree in context 1:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:05<00:00,  5.93item/s]
+Test accuracy on the current context: 0.8333333333333334
+Now testing the cobweb tree in context 2:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:05<00:00,  5.96item/s]
+Test accuracy on the current context: 0.7
+Now testing the cobweb tree in context 3:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:04<00:00,  6.43item/s]
+Test accuracy on the current context: 0.6333333333333333
+Now testing the cobweb tree in context 4:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:04<00:00,  6.23item/s]
+Test accuracy on the current context: 0.8
+
+======== MODEL TRAINING: CONTEXT 5 ========
+Processing: 100%|█████████████████████████████████████████████████████████████████████████████████████████| 100/100 [01:13<00:00,  1.36item/s]
+Training accuracy: 0.65
+
+--------- MODEL TESTING: CONTEXT 5 ---------
+Now testing the cobweb tree in context 1:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:04<00:00,  6.87item/s]
+Test accuracy on the current context: 0.9
+Now testing the cobweb tree in context 2:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:05<00:00,  5.25item/s]
+Test accuracy on the current context: 0.6333333333333333
+Now testing the cobweb tree in context 3:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:04<00:00,  6.03item/s]
+Test accuracy on the current context: 0.5
+Now testing the cobweb tree in context 4:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:04<00:00,  6.47item/s]
+Test accuracy on the current context: 0.6666666666666667
+Now testing the cobweb tree in context 5:
+Processing: 100%|███████████████████████████████████████████████████████████████████████████████████████████| 30/30 [00:05<00:00,  5.51item/s]
+Test accuracy on the current context: 0.7

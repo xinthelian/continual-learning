@@ -1,0 +1,133 @@
+xinlian@lawn-143-215-60-58 continual-learning % python3 main.py --experiment=permMNIST --scenario=task --contexts=5 --results-dict --pdf
+CUDA is NOT(!!) used
+
+
+ ***************************** LOAD DATA ******************************
+ --> MNIST32: 'train'-dataset consisting of 60000 samples
+ --> MNIST32: 'test'-dataset consisting of 10000 samples
+
+
+ *********************** DEFINE THE CLASSIFIER ************************
+-------------------------------------------------------
+Classifier(
+  (convE): ConvLayers(
+    (pooling): Identity()
+  )
+  (flatten): Flatten()
+  (fcE): MLP(
+    (fcLayer1): fc_layer(
+      (linear): LinearExcitability(in_features=1024, out_features=1000)
+      (nl): ReLU()
+    )
+    (fcLayer2): fc_layer(
+      (linear): LinearExcitability(in_features=1000, out_features=1000)
+      (nl): ReLU()
+    )
+  )
+  (classifier): fc_layer(
+    (linear): LinearExcitability(in_features=1000, out_features=50)
+  )
+)
+-------------------------------------------------------
+--> this network has 2076050 parameters (~2.1 million)
+       of which: - learnable: 2076050 (~2.1 million)
+                 - fixed: 0 (~0.0 million)
+
+
+************************** PARAMETER STAMP ***************************
+ --> problem:       permMNIST5-task
+ --> model:         F-1024x1000x1000_c50
+ --> train-params:  i5000-lr0.0001-b128-adam
+permMNIST5-task--F-1024x1000x1000_c50--i5000-lr0.0001-b128-adam
+
+
+****************************** TRAINING ******************************
+<CLASSIFIER> | Context: 1/5 | training loss: 0.00921 | training accuracy: 1.0 |: 100%|██████| 5000/5000 [01:09<00:00, 72.40it/s]
+<CLASSIFIER> | Context: 2/5 | training loss: 0.0107 | training accuracy: 0.992 |: 100%|█████| 5000/5000 [01:17<00:00, 64.65it/s]
+<CLASSIFIER> | Context: 3/5 | training loss: 0.0118 | training accuracy: 1.0 |: 100%|███████| 5000/5000 [01:19<00:00, 62.96it/s]
+<CLASSIFIER> | Context: 4/5 | training loss: 0.0309 | training accuracy: 0.992 |: 100%|█████| 5000/5000 [01:19<00:00, 62.65it/s]
+<CLASSIFIER> | Context: 5/5 | training loss: 0.0156 | training accuracy: 1.0 |: 100%|███████| 5000/5000 [01:19<00:00, 63.18it/s]
+ --> saved model mM-permMNIST5-task--F-1024x1000x1000_c50--i5000-lr0.0001-b128-adam to ./store/models
+
+
+***************************** EVALUATION *****************************
+
+ Accuracy of final model on test-set:
+ - Context 1: 0.8662
+ - Context 2: 0.8891
+ - Context 3: 0.9571
+ - Context 4: 0.9708
+ - Context 5: 0.9800
+=> average accuracy over all 5 contexts: 0.9326
+
+
+
+Generated plot: ./store/plots/permMNIST5-task--F-1024x1000x1000_c50--i5000-lr0.0001-b128-adam.pdf
+
+xinlian@lawn-143-215-60-58 continual-learning % python3 main.py --experiment=permMNIST --scenario=task --contexts=5 --results-dict --pdf
+CUDA is NOT(!!) used
+
+
+ ***************************** LOAD DATA ******************************
+ --> MNIST32: 'train'-dataset consisting of 60000 samples
+ --> MNIST32: 'test'-dataset consisting of 10000 samples
+
+
+ *********************** DEFINE THE CLASSIFIER ************************
+-------------------------------------------------------
+Classifier(
+  (convE): ConvLayers(
+    (pooling): Identity()
+  )
+  (flatten): Flatten()
+  (fcE): MLP(
+    (fcLayer1): fc_layer(
+      (linear): LinearExcitability(in_features=1024, out_features=1000)
+      (nl): ReLU()
+    )
+    (fcLayer2): fc_layer(
+      (linear): LinearExcitability(in_features=1000, out_features=1000)
+      (nl): ReLU()
+    )
+  )
+  (classifier): fc_layer(
+    (linear): LinearExcitability(in_features=1000, out_features=50)
+  )
+)
+-------------------------------------------------------
+--> this network has 2076050 parameters (~2.1 million)
+       of which: - learnable: 2076050 (~2.1 million)
+                 - fixed: 0 (~0.0 million)
+
+
+************************** PARAMETER STAMP ***************************
+ --> problem:       permMNIST5-task
+ --> model:         F-1024x1000x1000_c50
+ --> train-params:  i5000-lr0.0001-b128-adam
+permMNIST5-task--F-1024x1000x1000_c50--i5000-lr0.0001-b128-adam
+
+
+****************************** TRAINING ******************************
+<CLASSIFIER> | Context: 1/5 | training loss: 0.00921 | training accuracy: 1.0 |: 100%|██████| 5000/5000 [01:06<00:00, 74.85it/s]
+<CLASSIFIER> | Context: 2/5 | training loss: 0.0107 | training accuracy: 0.992 |: 100%|█████| 5000/5000 [01:12<00:00, 68.90it/s]
+<CLASSIFIER> | Context: 3/5 | training loss: 0.0118 | training accuracy: 1.0 |: 100%|███████| 5000/5000 [01:14<00:00, 67.09it/s]
+<CLASSIFIER> | Context: 4/5 | training loss: 0.0309 | training accuracy: 0.992 |: 100%|█████| 5000/5000 [01:13<00:00, 68.43it/s]
+<CLASSIFIER> | Context: 5/5 | training loss: 0.0156 | training accuracy: 1.0 |: 100%|███████| 5000/5000 [01:11<00:00, 70.11it/s]
+ --> saved model mM-permMNIST5-task--F-1024x1000x1000_c50--i5000-lr0.0001-b128-adam to ./store/models
+
+
+***************************** EVALUATION *****************************
+
+ Accuracy of final model on test-set:
+ - Context 1: 0.8662
+ - Context 2: 0.8891
+ - Context 3: 0.9571
+ - Context 4: 0.9708
+ - Context 5: 0.9800
+=> average accuracy over all 5 contexts: 0.9326
+
+
+
+Generated plot: ./store/plots/permMNIST5-task--F-1024x1000x1000_c50--i5000-lr0.0001-b128-adam.pdf
+
+{'acc per context': {'context 1': [0.9873046875, 0.97265625, 0.9404296875, 0.8876953125, 0.8603515625], 'context 2': [0, 0.98046875, 0.9716796875, 0.9482421875, 0.876953125], 'context 3': [0, 0, 0.98046875, 0.9814453125, 0.9482421875], 'context 4': [0, 0, 0, 0.9833984375, 0.97265625], 'context 5': [0, 0, 0, 0, 0.9794921875]}, 'average': [0.9873046875, 0.9765625, 0.9641927083333334, 0.9501953125, 0.9275390625], 'x_iteration': [5000, 10000, 15000, 20000, 25000], 'x_context': [1, 2, 3, 4, 5]}

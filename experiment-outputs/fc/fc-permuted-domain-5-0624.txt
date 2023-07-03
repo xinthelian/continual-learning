@@ -1,0 +1,67 @@
+xinlian@lawn-143-215-60-58 continual-learning % python3 main.py --experiment=permMNIST --scenario=domain --contexts=5 --results-dict --pdf
+CUDA is NOT(!!) used
+
+
+ ***************************** LOAD DATA ******************************
+ --> MNIST32: 'train'-dataset consisting of 60000 samples
+ --> MNIST32: 'test'-dataset consisting of 10000 samples
+
+
+ *********************** DEFINE THE CLASSIFIER ************************
+-------------------------------------------------------
+Classifier(
+  (convE): ConvLayers(
+    (pooling): Identity()
+  )
+  (flatten): Flatten()
+  (fcE): MLP(
+    (fcLayer1): fc_layer(
+      (linear): LinearExcitability(in_features=1024, out_features=1000)
+      (nl): ReLU()
+    )
+    (fcLayer2): fc_layer(
+      (linear): LinearExcitability(in_features=1000, out_features=1000)
+      (nl): ReLU()
+    )
+  )
+  (classifier): fc_layer(
+    (linear): LinearExcitability(in_features=1000, out_features=10)
+  )
+)
+-------------------------------------------------------
+--> this network has 2036010 parameters (~2.0 million)
+       of which: - learnable: 2036010 (~2.0 million)
+                 - fixed: 0 (~0.0 million)
+
+
+************************** PARAMETER STAMP ***************************
+ --> problem:       permMNIST5-domain
+ --> model:         F-1024x1000x1000_c10
+ --> train-params:  i5000-lr0.0001-b128-adam
+permMNIST5-domain--F-1024x1000x1000_c10--i5000-lr0.0001-b128-adam
+
+
+****************************** TRAINING ******************************
+<CLASSIFIER> | Context: 1/5 | training loss: 0.0199 | training accuracy: 0.984 |: 100%|█████| 5000/5000 [01:13<00:00, 68.18it/s]
+<CLASSIFIER> | Context: 2/5 | training loss: 0.00378 | training accuracy: 1.0 |: 100%|██████| 5000/5000 [01:19<00:00, 63.07it/s]
+<CLASSIFIER> | Context: 3/5 | training loss: 0.003 | training accuracy: 1.0 |: 100%|████████| 5000/5000 [01:22<00:00, 60.33it/s]
+<CLASSIFIER> | Context: 4/5 | training loss: 0.00237 | training accuracy: 1.0 |: 100%|██████| 5000/5000 [01:51<00:00, 44.65it/s]
+<CLASSIFIER> | Context: 5/5 | training loss: 0.00324 | training accuracy: 1.0 |: 100%|██████| 5000/5000 [01:43<00:00, 48.10it/s]
+ --> saved model mM-permMNIST5-domain--F-1024x1000x1000_c10--i5000-lr0.0001-b128-adam to ./store/models
+
+
+***************************** EVALUATION *****************************
+
+ Accuracy of final model on test-set:
+ - Context 1: 0.5927
+ - Context 2: 0.7993
+ - Context 3: 0.9470
+ - Context 4: 0.9679
+ - Context 5: 0.9813
+=> average accuracy over all 5 contexts: 0.8576
+
+
+
+Generated plot: ./store/plots/permMNIST5-domain--F-1024x1000x1000_c10--i5000-lr0.0001-b128-adam.pdf
+
+{'acc per context': {'context 1': [0.982421875, 0.962890625, 0.857421875, 0.79296875, 0.59765625], 'context 2': [0, 0.9892578125, 0.9599609375, 0.884765625, 0.79296875], 'context 3': [0, 0, 0.9814453125, 0.9560546875, 0.9453125], 'context 4': [0, 0, 0, 0.9814453125, 0.962890625], 'context 5': [0, 0, 0, 0, 0.98046875]}, 'average': [0.982421875, 0.97607421875, 0.9329427083333334, 0.90380859375, 0.855859375], 'x_iteration': [5000, 10000, 15000, 20000, 25000], 'x_context': [1, 2, 3, 4, 5]}

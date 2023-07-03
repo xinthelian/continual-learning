@@ -5,18 +5,18 @@ import time
 import torch
 from torch import optim
 # -custom-written libraries
-import utils
-from utils import checkattr
+import utils_mini
+from utils_mini import checkattr
 from data.load import get_context_set
 from models import define_models as define
 from models.cl.continual_learner import ContinualLearner
 from models.cl.memory_buffer import MemoryBuffer
 from models.cl import fromp_optimizer
-from train.train_task_based import train_cl, train_fromp, train_gen_classifier
+from train.train_task_based_mini import train_cl, train_fromp, train_gen_classifier
 from params import options
 from params.param_stamp import get_param_stamp, get_param_stamp_from_args, visdom_name
 from params.param_values import set_method_options,check_for_errors,set_default_values
-from eval import evaluate, callbacks as cb
+from eval import evaluate_mini, callbacks as cb
 from visual import visual_plt
 
 
@@ -152,7 +152,7 @@ def run(args, verbose=False):
         feature_extractor.eval()
         # - print characteristics of feature extractor on the screen
         if verbose:
-            utils.print_model_info(feature_extractor)
+            utils_mini.print_model_info(feature_extractor)
         # - reset size and # of channels to reflect the extracted features rather than the original images
         config = config.copy()  # -> make a copy to avoid overwriting info in the original config-file
         config['size'] = feature_extractor.conv_out_size
@@ -165,9 +165,9 @@ def run(args, verbose=False):
     if (feature_extractor is not None) and args.depth>0:
         if verbose:
             print("\n\n " + ' PUT DATA TRHOUGH FEATURE EXTRACTOR '.center(70, '*'))
-        train_datasets = utils.preprocess(feature_extractor, train_datasets, config, batch=args.batch,
+        train_datasets = utils_mini.preprocess(feature_extractor, train_datasets, config, batch=args.batch,
                                           message='<TRAINSET>')
-        test_datasets = utils.preprocess(feature_extractor, test_datasets, config, batch=args.batch,
+        test_datasets = utils_mini.preprocess(feature_extractor, test_datasets, config, batch=args.batch,
                                          message='<TESTSET> ')
 
     #-------------------------------------------------------------------------------------------------#
@@ -213,9 +213,9 @@ def run(args, verbose=False):
     if verbose:
         if checkattr(args, 'gen_classifier') or checkattr(args, 'separate_networks'):
             message = '{} copies of:'.format(len(train_datasets))
-            utils.print_model_info(model.vae0 if checkattr(args, 'gen_classifier') else model.context1, message=message)
+            utils_mini.print_model_info(model.vae0 if checkattr(args, 'gen_classifier') else model.context1, message=message)
         else:
-            utils.print_model_info(model)
+            utils_mini.print_model_info(model)
 
     # -------------------------------------------------------------------------------------------------#
 
@@ -319,7 +319,7 @@ def run(args, verbose=False):
             generator.optimizer = optim.SGD(generator.optim_list)
         # -print architecture to screen
         if verbose:
-            utils.print_model_info(generator)
+            utils_mini.print_model_info(generator)
     else:
         generator = None
 
@@ -386,7 +386,7 @@ def run(args, verbose=False):
     ) else None
 
     # Setting up Visdom environment
-    if utils.checkattr(args, 'visdom'):
+    if utils_mini.checkattr(args, 'visdom'):
         if verbose:
             print('\n\n'+' VISDOM '.center(70, '*'))
         from visdom import Visdom
@@ -449,6 +449,11 @@ def run(args, verbose=False):
         train_fn = train_fromp if checkattr(args, 'fromp') else (
             train_gen_classifier if checkattr(args, 'gen_classifier') else train_cl
         )
+
+        # -mini: mini version of datasets.
+        # 100 for each training set and 30 for each test set.
+        # for i, train
+
         # -perform training
         train_fn(
             model, train_datasets, iters=args.iters, batch_size=args.batch, baseline=baseline,
@@ -470,7 +475,7 @@ def run(args, verbose=False):
             save_name = "mM-{}".format(param_stamp) if (
                     not hasattr(args, 'full_stag') or args.full_stag == "none"
             ) else "{}-{}".format(model.name, args.full_stag)
-            utils.save_checkpoint(model, args.m_dir, name=save_name, verbose=verbose)
+            utils_mini.save_checkpoint(model, args.m_dir, name=save_name, verbose=verbose)
     else:
         # Load previously trained model(s) (if goal is to only evaluate previously trained model)
         if verbose:
@@ -478,7 +483,7 @@ def run(args, verbose=False):
         load_name = "mM-{}".format(param_stamp) if (
             not hasattr(args, 'full_ltag') or args.full_ltag == "none"
         ) else "{}-{}".format(model.name, args.full_ltag)
-        utils.load_checkpoint(model, args.m_dir, name=load_name, verbose=verbose, strict=False)
+        utils_mini.load_checkpoint(model, args.m_dir, name=load_name, verbose=verbose, strict=False)
 
     #-------------------------------------------------------------------------------------------------#
 
@@ -519,7 +524,7 @@ def run(args, verbose=False):
     if checkattr(args, 'results_dict'):
         file_name = "{}/dict-{}--n{}{}".format(args.r_dir, param_stamp, "All" if args.acc_n is None else args.acc_n,
                                                "--S{}".format(args.eval_s) if checkattr(args, 'gen_classifier') else "")
-        utils.save_object(plotting_dict, file_name)
+        utils_mini.save_object(plotting_dict, file_name)
 
     #-------------------------------------------------------------------------------------------------#
 
@@ -565,8 +570,6 @@ def run(args, verbose=False):
         # -print name of generated plot on screen
         if verbose:
             print("\nGenerated plot: {}\n".format(plot_name))
-
-    print(plotting_dict)
 
 
 

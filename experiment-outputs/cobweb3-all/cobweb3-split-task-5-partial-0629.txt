@@ -1,0 +1,33 @@
+xinlian@lawn-143-215-60-58 continual-learning % python3 mnist_test_cobweb3_multitask_all.py --experiment splitMNIST --scenario domain --contexts 5
+CUDA is NOT(!!) used
+
+
+ ***************************** LOAD DATA ******************************
+ --> MNIST: 'train'-dataset consisting of 60000 samples
+ --> MNIST: 'test'-dataset consisting of 10000 samples
+/Users/xinlian/Library/Python/3.9/lib/python/site-packages/torchvision/datasets/mnist.py:65: UserWarning: train_labels has been renamed targets
+  warnings.warn("train_labels has been renamed targets")
+
+======== MODEL TRAINING: CONTEXT 1 ========
+Processing: 100%|██████████████████████████████████████████████████████████████████| 12665/12665 [13:10:07<00:00,  3.74s/item]
+Training accuracy: 0.9960521121200158
+
+--------- MODEL TESTING: CONTEXT 1 ---------
+Now testing the cobweb tree in context 1:
+Processing: 100%|█████████████████████████████████████████████████████████████████████████| 2115/2115 [11:03<00:00,  3.19item/s]
+Test accuracy on the current context: 0.9971631205673759
+
+======== MODEL TRAINING: CONTEXT 2 ========
+Processing: 100%|████████████████████████████████████████████████████████████████████| 12089/12089 [14:56:20<00:00,  4.45s/item]
+Training accuracy: 0.9496236247828604
+
+--------- MODEL TESTING: CONTEXT 2 ---------
+Now testing the cobweb tree in context 1:
+Processing: 100%|████████████████████████████████████████████████████████████████████████| 2115/2115 [1:51:42<00:00,  3.17s/item]
+Test accuracy on the current context: 0.9906953966699314
+Now testing the cobweb tree in context 2:
+Processing: 100%|████████████████████████████████████████████████████████████████████████████| 2042/2042 [18:32<00:00,  1.84item/s]
+Test accuracy on the current context: 0.9725759059745348
+
+======== MODEL TRAINING: CONTEXT 3 ========
+Processing:  76%|██████████████████████████████████████████████████████▊                 | 8570/11263 [37:46:59<55:06,  1.23s/item]

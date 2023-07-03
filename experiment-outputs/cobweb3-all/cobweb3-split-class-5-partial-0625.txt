@@ -1,0 +1,22 @@
+Last login: Fri Jun 23 19:10:18 on ttys001
+xinthelian@xins-mbp continual-learning % python3 mnist_test_cobweb3_multitask_all.py --experiment splitMNIST --scenario class --contexts 5
+CUDA is NOT(!!) used
+
+
+ ***************************** LOAD DATA ******************************
+ --> MNIST: 'train'-dataset consisting of 60000 samples
+ --> MNIST: 'test'-dataset consisting of 10000 samples
+/Library/Frameworks/Python.framework/Versions/3.10/lib/python3.10/site-packages/torchvision/datasets/mnist.py:65: UserWarning: train_labels has been renamed targets
+  warnings.warn("train_labels has been renamed targets")
+
+======== MODEL TRAINING: CONTEXT 1 ========
+Processing: 100%|████████████████████████████████████████████████████████████| 12665/12665 [5:32:34<00:00,  1.58s/item]
+Training accuracy: 0.9960521121200158
+
+--------- MODEL TESTING: CONTEXT 1 ---------
+Now testing the cobweb tree in context 1:
+Processing: 100%|████████████████████████████████████████████████████████████████| 2115/2115 [14:49<00:00,  2.38item/s]
+Test accuracy on the current context: 0.9971631205673759
+
+======== MODEL TRAINING: CONTEXT 2 ========
+Processing:  90%|█████████████████████████████████████████████████████▍     | 10940/12089 [18:15:38<20:08,  1.05s/item]ß

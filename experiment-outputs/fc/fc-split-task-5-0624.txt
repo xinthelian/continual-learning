@@ -1,0 +1,66 @@
+xinlian@lawn-143-215-60-58 continual-learning % python3 main.py --experiment=splitMNIST --scenario=task --contexts=5 --results-dict
+CUDA is NOT(!!) used
+
+
+ ***************************** LOAD DATA ******************************
+ --> MNIST: 'train'-dataset consisting of 60000 samples
+ --> MNIST: 'test'-dataset consisting of 10000 samples
+/Users/xinlian/Library/Python/3.9/lib/python/site-packages/torchvision/datasets/mnist.py:65: UserWarning: train_labels has been renamed targets
+  warnings.warn("train_labels has been renamed targets")
+
+
+ *********************** DEFINE THE CLASSIFIER ************************
+-------------------------------------------------------
+Classifier(
+  (convE): ConvLayers(
+    (pooling): Identity()
+  )
+  (flatten): Flatten()
+  (fcE): MLP(
+    (fcLayer1): fc_layer(
+      (linear): LinearExcitability(in_features=784, out_features=400)
+      (nl): ReLU()
+    )
+    (fcLayer2): fc_layer(
+      (linear): LinearExcitability(in_features=400, out_features=400)
+      (nl): ReLU()
+    )
+  )
+  (classifier): fc_layer(
+    (linear): LinearExcitability(in_features=400, out_features=10)
+  )
+)
+-------------------------------------------------------
+--> this network has 478410 parameters (~0.5 million)
+       of which: - learnable: 478410 (~0.5 million)
+                 - fixed: 0 (~0.0 million)
+
+
+************************** PARAMETER STAMP ***************************
+ --> problem:       splitMNIST5-task
+ --> model:         F-784x400x400_c10
+ --> train-params:  i2000-lr0.001-b128-adam
+splitMNIST5-task--F-784x400x400_c10--i2000-lr0.001-b128-adam
+
+
+****************************** TRAINING ******************************
+<CLASSIFIER> | Context: 1/5 | training loss: 4.66e-09 | training accuracy: 1.0 |: 100%|█████| 2000/2000 [00:21<00:00, 91.69it/s]
+<CLASSIFIER> | Context: 2/5 | training loss: 1.69e-06 | training accuracy: 1.0 |: 100%|█████| 2000/2000 [00:22<00:00, 89.99it/s]
+<CLASSIFIER> | Context: 3/5 | training loss: 4.61e-07 | training accuracy: 1.0 |: 100%|█████| 2000/2000 [00:22<00:00, 90.72it/s]
+<CLASSIFIER> | Context: 4/5 | training loss: 2.34e-06 | training accuracy: 1.0 |: 100%|█████| 2000/2000 [00:22<00:00, 87.73it/s]
+<CLASSIFIER> | Context: 5/5 | training loss: 1.08e-05 | training accuracy: 1.0 |: 100%|█████| 2000/2000 [00:22<00:00, 88.57it/s]
+ --> saved model mM-splitMNIST5-task--F-784x400x400_c10--i2000-lr0.001-b128-adam to ./store/models
+
+
+***************************** EVALUATION *****************************
+
+ Accuracy of final model on test-set:
+ - Context 1: 0.5943
+ - Context 2: 0.8653
+ - Context 3: 0.9824
+ - Context 4: 0.9708
+ - Context 5: 0.9965
+=> average accuracy over all 5 contexts: 0.8819
+
+
+{'acc per context': {'context 1': [0.9990234375, 0.9912109375, 0.5634765625, 0.55859375, 0.61328125], 'context 2': [0, 0.9990234375, 0.9638671875, 0.8759765625, 0.857421875], 'context 3': [0, 0, 1.0, 0.9541015625, 0.9794921875], 'context 4': [0, 0, 0, 1.0, 0.9658203125], 'context 5': [0, 0, 0, 0, 0.9990234375]}, 'average': [0.9990234375, 0.9951171875, 0.8424479166666666, 0.84716796875, 0.8830078125], 'x_iteration': [2000, 4000, 6000, 8000, 10000], 'x_context': [1, 2, 3, 4, 5]}
